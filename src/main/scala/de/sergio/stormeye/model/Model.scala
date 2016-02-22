@@ -15,8 +15,16 @@ object Model {
     val Classic, Starcraft, Diablo, Warcraft = Value
   }
 
-  case class Hero(name: HeroName.Value, universe: Universe.Value, builds: List[Build])
-  case class Talent(order: Int, name: String, description: String)
+  object Key extends Enumeration {
+    type Key = Value
+    val Q, W, E, D, R = Value
+  }
+
+  case class Hero(name: HeroName.Value, universe: Universe.Value, combatTrait: Ability, abilities: List[Ability],
+                  secondaryAbilities: Option[List[Ability]] = None, heroicAbilities: List[Ability],
+                  specialMount: Option[Ability] = None, talentTree: List[Talent], builds: Option[List[Build]] = None)
+  case class Ability(name: String, description: String, key: Option[Key.Value] = None, mana: Int, cooldown: Int)
+  case class Talent(tier: Int, name: String, description: String)
   case class Build(order: Int, talents: List[Talent], comments: Option[String] = None)
 
 }

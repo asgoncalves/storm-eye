@@ -25,8 +25,8 @@ object Main extends App {
 
   }
 
-  val stiches = Hero(Stiches, Warcraft, List(Build(1, List(Talent(1, "tst1", "tst1desc"), Talent(2, "tst2", "tst2desc"), Talent(3, "tst3", "tst3desc"), Talent(4, "tst4", "tst4desc")))))
-  println(stiches.builds.head)
-  // println(opts.hero())
+  // val stiches = Hero(Stiches, Warcraft, List(Build(1, List(Talent(1, "tst1", "tst1desc"), Talent(2, "tst2", "tst2desc"), Talent(3, "tst3", "tst3desc"), Talent(4, "tst4", "tst4desc")))))
+  // println(stiches.builds.head)
+  println(opts.hero())
 
 }

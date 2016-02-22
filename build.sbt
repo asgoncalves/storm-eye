@@ -6,4 +6,7 @@ version := "0.1-SNAPSHOT"
 
 scalaVersion := "2.11.7"
 
-libraryDependencies += "org.rogach" %% "scallop" % "0.9.5"
+libraryDependencies ++= Seq(
+  "org.rogach" %% "scallop" % "0.9.5",
+  "org.yaml" % "snakeyaml" % "1.13"
+)
