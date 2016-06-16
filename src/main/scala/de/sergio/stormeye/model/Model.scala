@@ -1,30 +1,37 @@
 package de.sergio.stormeye.model
 
 object Model {
-
-  object HeroName extends Enumeration {
-    type HeroName = Value
-    val Abathur, Anubarak, Artanis, Arthas, Azmodan, Brightwing, Chen, Cho, Diablo, ETC, Falstad, Gall, Gazlowe,
-    Greymane, Illidan, Jaina, Johanna, Kaelthas, Kerrigan, Kharazim, Leoric, LiLi, LiMing, LtMorales, Lunara,
-    Malfurion, Muradin, Murky, Nazeebo, Nova, Raynor, Rehgar, Rexxar, SgtHammer, Sonya, Stiches, Sylvanas, Tassadar,
-    TheButcher, TheLostVikings, Thrall, Tychus, Tyrael, Tyrande, Uther, Valla, Xul, Zagara, Zeratul = Value
+  case class Hero(id: String, name: String, title: String, description: String, role: String, `type`: String, gender: String, franchise: String, difficulty: String, abilities: Map[String, List[Ability]], talents: Map[String, List[Talent]]) {
+    override def toString(): String = {
+      "\nID: \t\t" + id +
+      "\nName: \t\t" + name +
+      "\nTitle: \t\t" + title +
+      "\nDescription: \t" + description +
+      "\nRole: \t\t" + role +
+      "\nType: \t\t" + `type` +
+      "\nGender: \t" + gender +
+      "\nFranchise: \t" + franchise +
+      "\nDifficulty: \t" + difficulty
+    }
   }
 
-  object Universe extends Enumeration {
-    type Universe = Value
-    val Classic, Starcraft, Diablo, Warcraft = Value
+  case class Ability(id: String, manaCost: Option[Int], name: String, description: String, cooldown: Option[Int], shortcut: Option[String]) {
+    override def toString(): String = {
+      "\nID: \t\t" + id +
+        "\nName: \t\t" + name +
+        "\nDescription: \t" + description +
+        "\nMana cost: \t" + manaCost.getOrElse(0) +
+        "\nCooldown: \t" + cooldown.getOrElse(0) +
+        "\nShortcut: \t" + shortcut.getOrElse("None")
+    }
   }
 
-  object Key extends Enumeration {
-    type Key = Value
-    val Q, W, E, D, R = Value
+  case class Talent(id: String, name: String, description: String, cooldown: Option[Int]) {
+    override def toString(): String = {
+      "\nID: \t\t" + id +
+        "\nName: \t\t" + name +
+        "\nDescription: \t" + description +
+        "\nCooldown: \t" + cooldown.getOrElse("NA")
+    }
   }
-
-  case class Hero(name: HeroName.Value, universe: Universe.Value, combatTrait: Ability, abilities: List[Ability],
-                  secondaryAbilities: Option[List[Ability]] = None, heroicAbilities: List[Ability],
-                  specialMount: Option[Ability] = None, talentTree: List[Talent], builds: Option[List[Build]] = None)
-  case class Ability(name: String, description: String, key: Option[Key.Value] = None, mana: Int, cooldown: Int)
-  case class Talent(tier: Int, name: String, description: String)
-  case class Build(order: Int, talents: List[Talent], comments: Option[String] = None)
-
 }
