@@ -1,0 +1,72 @@
+[
+  {
+    "hero": "Example build",
+    "order": 1,
+    "description": "Main build",
+    "talentsPerTier": [
+      {"1": ""},
+      {"4": ""},
+      {"7": ""},
+      {"10": ""},
+      {"13": ""},
+      {"16": ""},
+      {"20": ""}
+    ]
+  },
+  {
+    "hero": "Falstad",
+    "order": 1,
+    "description": "Competitive",
+    "talentsPerTier": [
+      {"1": "Gathering Storm"},
+      {"4": "Flow Rider"},
+      {"7": "BOOMerang"},
+      {"10": "Mighty Gust"},
+      {"13": "Static Shield / Giant Killer"},
+      {"16": "Hammer Time"},
+      {"20": "Epic Mount"}
+    ]
+  },
+  {
+    "hero": "Falstad",
+    "order": 2,
+    "description": "Auto attack",
+    "talentsPerTier": [
+      {"1": "Seasoned Marksman"},
+      {"4": "Vigorous Assault"},
+      {"7": "Secret Weapon"},
+      {"10": "Mighty Gust"},
+      {"13": "Giant Killer"},
+      {"16": "Crippling Hammer"},
+      {"20": "Nexus Frenzy / Epic Mount"}
+    ]
+  },
+  {
+    "hero": "Sonya",
+    "order": 1,
+    "description": "Main build",
+    "talentsPerTier": [
+      {"1": "Block"},
+      {"4": "Focused Attack"},
+      {"7": "Ferocious Healing"},
+      {"10": "Wrath of the Berserker"},
+      {"13": "Mystical Spear"},
+      {"16": "Nerves of Steel"},
+      {"20": "Ignore Pain"}
+    ]
+  },
+  {
+    "hero": "The Lost Vikings",
+    "order": 1,
+    "description": "Main build",
+    "talentsPerTier": [
+      {"1": "Viking Bribery"},
+      {"4": "Mercenary Lord"},
+      {"7": "Spin to Win!"},
+      {"10": "Play Again!"},
+      {"13": "Jump!"},
+      {"16": "Impatience is a Virtue"},
+      {"20": "Viking Fury of the Storm"}
+    ]
+  }
+]

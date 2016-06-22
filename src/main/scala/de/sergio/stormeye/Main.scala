@@ -1,7 +1,8 @@
-import de.sergio.stormeye.model.Model.{Ability, Hero, Talent}
+import de.sergio.stormeye.model.Model.{Ability, Build, Hero, Talent}
 import org.rogach.scallop._
 import org.json4s._
 import org.json4s.native.JsonMethods._
+import de.sergio.stormeye.utils.Presentation._
 
 object Main extends App with DefaultFormats {
 
@@ -28,17 +29,25 @@ object Main extends App with DefaultFormats {
     val help = opt[Boolean]("help", noshort = true, descr = "Show this message")
   }
 
-  // load the heroes data
-  val data: List[Hero] = parse(scala.io.Source.fromFile("src/main/resources/heroes.json").mkString).extract[List[Hero]]
-
   // save the hero name as a variable
   val heroName: String = opts.hero.get.getOrElse("").toLowerCase()
 
+  // load the heroes data
+  val heroesData: List[Hero] = parse(scala.io.Source.fromFile("src/main/resources/heroes.json").mkString).extract[List[Hero]]
+
+  // load the heroes builds
+  val buildsData: List[Build] = parse(scala.io.Source.fromFile("src/main/resources/builds.json").mkString).extract[List[Build]]
+
+  // full data
+  val heroesFullData: List[Hero] = heroesData map { hero =>
+    hero.copy(builds = Some(buildsData.filter(_.hero.equalsIgnoreCase(heroName))))
+  }
+
   // get the hero by name
-  val hero = data.find(_.name.toLowerCase == heroName)
+  val hero = heroesFullData.find(_.name.toLowerCase == heroName)
 
   if(opts.info.get.getOrElse(false)) {
-    printInfo(hero)
+    printInfo(hero.get)
   }
 
   if(opts.abilities.get.getOrElse(false)) {
@@ -50,47 +59,6 @@ object Main extends App with DefaultFormats {
   }
 
   if (opts.builds.get.getOrElse(false)) {
-    printBuilds()
-  }
-
-  def printInfo(hero: Option[Hero]) = {
-    println("\n########################################")
-    println(s"Printing info for ${hero.get.name}")
-    println("########################################")
-    println(hero.getOrElse(""))
-    println("\n########################################")
-  }
-
-  def printAbilities(abilities: Map[String, List[Ability]]) = {
-    abilities.keys.foreach { abilityKey =>
-
-      println("\n########################################")
-      println(s"Printing abilities for $abilityKey")
-      println("########################################")
-
-      abilities.get(abilityKey).get.foreach { ability =>
-        println(ability)
-      }
-    }
-    println("########################################")
-  }
-
-  def printTalents(talents: Map[String, List[Talent]]) = {
-
-    talents.toSeq.sortBy(_._1.toInt).foreach { talentTier =>
-
-      println("\n########################################")
-      println(s"Printing talent tier ${talentTier._1}")
-      println("########################################")
-
-      talentTier._2.foreach(println)
-    }
-
-    println("########################################")
-  }
-
-  def printBuilds() = {
-    println("\n\nBUILDS ARE NOT YET IMPLEMENTED\n\n")
+    printBuilds(hero.get.builds.get)
   }
 }
-
